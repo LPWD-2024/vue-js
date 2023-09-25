@@ -1,0 +1,38 @@
+.e-button {
+  background: $main-color;
+  color: $white;
+  padding: rem(10);
+  border-radius: rem(4);
+  border: rem(1) solid $main-color;
+
+  @include small-up {
+    font-size: rem(24);
+  }
+
+  @include medium-up {
+    font-size: rem(32);
+  }
+
+  &::before {
+    content: '👍';
+    margin-right: 0.25rem;
+    @include small-up {
+      content: '😃';
+    }
+  }
+  &:hover {
+    color: $main-color;
+    background: $white;
+  }
+  &.-error {
+    background-color: $sub-color;
+    border-color: $sub-color;
+    &:hover {
+      color: $sub-color;
+      background: $white;
+    }
+  }
+  &.-sub {
+    padding: 0.25rem;
+  }
+}

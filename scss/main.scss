@@ -1,0 +1,53 @@
+// Foundations
+@import 'foundations/variables';
+@import 'foundations/mixins';
+@import 'foundations/functions';
+
+// Elements
+@import 'elements/button';
+
+//Components
+@import 'components/form';
+
+h1 {
+  color: $main-color;
+}
+
+a {
+  border: 1px solid $gray2;
+}
+
+p {
+  + ul {
+    border: 1px solid $gray3;
+    > li {
+      color: $gray1;
+    }
+  }
+}
+
+h1 {
+  color: $main-color;
+  @include title;
+}
+
+h2 {
+  color: $sub-color;
+  @include title;
+}
+
+@media screen and (min-width: 768px) {
+  h1 {
+    color: $sub-color;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  @for $i from 1 through 12 {
+    .col-#{$i} {
+      grid-column: span $i;
+    }
+  }
+}
