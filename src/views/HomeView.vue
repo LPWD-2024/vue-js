@@ -29,7 +29,7 @@ import DefaultLayout from '@/components/layouts/DefaultLayout.vue'
     <MyBackgroundScroll />
 
     <template #footer>
-      <MyButton href="/about">My link Button</MyButton>
+      <MyButton href="/about" variant="rounded">My link Button</MyButton>
     </template>
   </DefaultLayout>
 
