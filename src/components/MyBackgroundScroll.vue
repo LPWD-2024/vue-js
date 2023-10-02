@@ -1,30 +1,28 @@
-<script>
-export default {
-  data() {
-    return {
-      percent: 0
-    }
-  },
-  methods: {
-    handleScroll() {
-      let scrollTop = window.scrollY
-      let scrollBottom = scrollTop + window.innerHeight
+<script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
 
-      let offsetTop = this.$refs.container.offsetTop
-      let elementHeight = this.$refs.container.offsetHeight
+const percent = ref(0)
+const container = ref()
 
-      let percent = ((scrollBottom - offsetTop) / elementHeight) * 100
+function handleScroll() {
 
-      this.percent = Math.round(percent)
-    }
-  },
-  mounted() {
-    window.addEventListener('scroll', this.handleScroll)
-  },
-  unmounted() {
-    window.removeEventListener('scroll', this.handleScroll)
-  }
+  let scrollTop = window.scrollY
+  let scrollBottom = scrollTop + window.innerHeight
+
+  
+  let offsetTop = container.value.offsetTop
+  let elementHeight = container.value.offsetHeight
+
+  let result = ((scrollBottom - offsetTop) / elementHeight) * 100
+
+  percent.value = result > 100 ? 100 : Math.round(result)
 }
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 </script>
 
 <template>
