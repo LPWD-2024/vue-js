@@ -6,7 +6,7 @@ export default {
 }
 
 export const Cards = {
-  render: (args) => {
+  render: () => {
     return {
       components: {
         MyCards

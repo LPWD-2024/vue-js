@@ -1,8 +1,8 @@
 <script setup>
 import MyBackgroundScroll from '../components/MyBackgroundScroll.vue'
 import MyButton from '@/components/elements/MyButton.vue'
-import DefaultLayout from '@/components/layouts/DefaultLayout.vue'
-</script>
+import DefaultLayout from '@/components/layouts/DefaultLayout.vue' 
+</script> 
 
 <template>
   <DefaultLayout>

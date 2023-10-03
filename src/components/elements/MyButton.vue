@@ -17,8 +17,12 @@ const className = computed(() => ({
 
 </script>
 <template>
-  <a v-if="href" :href="href" class="button" :class="className"><slot></slot></a>
-  <button v-else class="button" :class="className"><slot></slot></button>
+  <a v-if="href" :href="href" class="button" :class="className">
+    <slot></slot>
+  </a>
+  <button v-else class="button" :class="className">
+    <slot></slot>
+  </button>
 </template>
 
 <style lang="scss" scoped>
@@ -41,7 +45,7 @@ const className = computed(() => ({
     background: $primary-color;
     border-radius: rem(37);
     font-weight: 500;
-    padding: rem(26) rem(64);
+    padding: rem(26) rem(64); 
   }
 
   &.-small {

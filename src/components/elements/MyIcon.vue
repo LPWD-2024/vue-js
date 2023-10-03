@@ -1,11 +1,11 @@
 <script setup>
-import { computed } from 'vue'
 import IconCommunity from '../icons/IconCommunity.vue';
 import IconDocumentation from '../icons/IconDocumentation.vue';
 import IconEcosystem from '../icons/IconEcosystem.vue';
-import IconSupport from '../icons/IconSupport.vue';
+import IconSupport from '../icons/IconSupport.vue'; 
 import IconTooling from '../icons/IconTooling.vue';
-
+import { computed } from 'vue'
+ 
 const props = defineProps({
   name: String
 })

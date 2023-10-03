@@ -5,7 +5,7 @@ import IconEcosystem from '../icons/IconEcosystem.vue'
 import IconSupport from '../icons/IconSupport.vue'
 import IconTooling from '../icons/IconTooling.vue'
 
-const props = defineProps({
+defineProps({
   name: String
 })
 </script>
