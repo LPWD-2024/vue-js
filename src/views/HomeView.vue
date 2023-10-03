@@ -17,6 +17,7 @@ import DefaultLayout from '@/components/layouts/DefaultLayout.vue'
     </template>
 
     <template #aside>
+      <img style='max-width: 100px;' src='@/assets/image-1.png' />
       <nav>
         <ul>
           <li><a href="#">Aside link 1</a></li>

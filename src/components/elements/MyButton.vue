@@ -30,7 +30,7 @@ const className = computed(() => ({
   box-shadow: 0px rem(4) rem(4) rgba(0, 0, 0, 0.25);
   display: inline-block;
   color: $white;
-  font-family: $primary-font-familly;
+  font-family: $primary-font-family;
   font-size: $regular-font-size;
   font-weight: 600;
   padding: rem(33) rem(67);
