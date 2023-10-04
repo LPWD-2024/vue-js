@@ -42,6 +42,6 @@ export const MainTitle = {
 export const SubTitle = {
   ...Title,
   args :{
-   size: 'small',
+    size: 'small',
   }
 }
