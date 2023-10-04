@@ -10,9 +10,8 @@ defineProps({
 })
 
 function name() {
-  console.log('ahgars')
   
-return 'coucou' 
+  return 'coucou' 
 }
 name()
 </script>
