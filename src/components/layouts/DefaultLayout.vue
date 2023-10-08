@@ -1,3 +1,22 @@
+<script>
+fetch('http://localhost:4000/recipes', {
+  method: 'GET',
+  mode: 'cors'
+}).then((response) => {
+  return response.json();
+}).then((data) => {
+  console.log(data);
+}).catch((error) => {
+  console.log(error);
+})
+
+
+// const data = await fetch('http://localhost:4000/recipes', {
+//   method: 'GET',
+//   mode: 'cors'
+// })
+</script>
+
 <template>
   <main class="layout">
     <header class="layout__header">
