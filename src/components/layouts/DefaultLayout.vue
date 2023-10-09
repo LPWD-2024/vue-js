@@ -1,20 +1,5 @@
-<script>
-fetch('http://localhost:4000/recipes', {
-  method: 'GET',
-  mode: 'cors'
-}).then((response) => {
-  return response.json();
-}).then((data) => {
-  console.log(data);
-}).catch((error) => {
-  console.log(error);
-})
+<script setup>
 
-
-// const data = await fetch('http://localhost:4000/recipes', {
-//   method: 'GET',
-//   mode: 'cors'
-// })
 </script>
 
 <template>
