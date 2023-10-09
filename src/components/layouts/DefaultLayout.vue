@@ -1,3 +1,7 @@
+<script setup>
+
+</script>
+
 <template>
   <main class="layout">
     <header class="layout__header">

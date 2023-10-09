@@ -1,28 +1,26 @@
-<script setup>
+<script>
 import MyButton from '@/components/elements/MyButton.vue'
 import DefaultLayout from '@/components/layouts/DefaultLayout.vue'
 import MyBackgroundScroll from '@/components/MyBackgroundScroll.vue'
-import { onMounted }  from "vue"
 
-// Modifier les deux fonctions pour executer 2 requêtes dans chacune, l'une après l'autre.
-// Récupérer toutes les recettes
-// Récupérer toutes les recettes de la cuisine 1 -> /recipes/cuisine/:cuisineId
+export default {
+  data () {
+    return {
+      recipes: []
+    }
+  },
 
-const getRecipesThen = () => {
-  fetch('http://localhost:3000/recipes')
-    .then(response => response.json())
-    .then(data => console.log('fetch + then', data))
+  async mounted () {
+    await this.getArticles()
+  },
+
+  methods: {
+    async getArticles () {
+      const response = await fetch('http://localhost:3000')
+      return response.json()
+    }
+  }
 }
-
-const getRecipes = async () => {
-  const response = await fetch('http://localhost:3000/recipes')
-  return response.json()
-}
-
-onMounted(async () => {
-  console.log('fetch + await', await getRecipes())
-  getRecipesThen()
-})
 </script>
 
 <template>
