@@ -35,20 +35,32 @@ const getRecipes = async () => {
 }
 
 
-// Retourner une liste des noms des recettes en utilisant recipes.map
+// Retourner un tableau des noms des recettes en utilisant recipes.map
+// ["Spaghetti Bolognese", "Vegan Stir-Fry", "Updated Spaghetti name", "Riz cantonais", ...]
 // Retourner un tableau des recettes dont le titre contient « Spaghetti » en utilisant recipes.filter
+// ["Spaghetti Bolognese", "Updated Spaghetti name"]
 // Retourner un boolean qui dit si une de vos recettes est du goal_id 1 en utilisant recipes.some
-
+// true
 const recipesNames = computed(() => {
-  //
+  return recipes.value.map((item) => item.recipe_name)
 })
 
 const spaghettiRecipes = computed(() => {
-  //
+  return recipes.value.filter((item) => item.recipe_name.includes('Spaghetti'))
+})
+
+const hasGoalId1Long = computed(() => {
+  return recipes.value.some((item) => {
+    if (item.goal_id === 1) {
+      return true
+    } else {
+      return false
+    }
+  })
 })
 
 const hasGoalId1 = computed(() => {
-//
+  return recipes.value.some((item) => item.goal_id === 1)
 })
 
 
@@ -80,6 +92,7 @@ onMounted(async () => {
       </nav>
     </template>
     {{ recipes }}
+    {{ recipesNames }}
     <MyBackgroundScroll />
 
     <template #footer>
