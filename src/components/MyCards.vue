@@ -53,7 +53,7 @@ const cards = reactive(response);
 
 <template>
   <div class="cards">
-    <MyCard v-for="card in cards" :key="card.id" />
+    <MyCard v-for="card in cards" :key="card.id" v-bind="card" />
   </div>
 </template>
 

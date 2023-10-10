@@ -4,7 +4,7 @@ import DefaultLayout from '@/components/layouts/DefaultLayout.vue'
 import MyBackgroundScroll from '@/components/MyBackgroundScroll.vue'
 import {computed, onMounted, ref} from "vue"
 import axios from 'axios'
-
+import RecipeCard from "@/components/RecipeCard/RecipeCard.vue";
 
 // Modifier les deux fonctions pour executer 2 requêtes dans chacune, l'une après l'autre.
 // Récupérer toutes les recettes
@@ -67,7 +67,6 @@ const addRecipe = () => {
   recipes.value.push({ recipe_name: 'Pesto spaghetti' })
 }
 
-
 onMounted(async () => {
   recipes.value = await getRecipes()
 })
@@ -95,6 +94,11 @@ onMounted(async () => {
         </ul>
       </nav>
     </template>
+    <div class="recipes-list">
+      <div v-for="(recipe, index) in recipes" :key="index">
+        <RecipeCard :title="recipe.recipe_name" :description="recipe.recipe_description" :image="recipe.image_url" />
+      </div>
+    </div>
     recipes names : {{ recipesNames }} <br><br>
     spaghettiRecipes : {{ spaghettiRecipes }} <br><br>
     hasGoalId1 : {{ hasGoalId1 }} <br><br>
@@ -111,3 +115,11 @@ onMounted(async () => {
   <MyButton variant="rounded" >My rounded Button</MyButton> -->
   <p></p>
 </template>
+
+<style lang="scss">
+.recipes-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+</style>
