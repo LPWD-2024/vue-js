@@ -46,7 +46,7 @@ const recipesNames = computed(() => {
 })
 
 const spaghettiRecipes = computed(() => {
-  return recipes.value.filter((item) => item.recipe_name.includes('Spaghetti'))
+  return recipes.value.filter((item) => item.recipe_name.toLowerCase().includes('spaghetti'))
 })
 
 const hasGoalId1Long = computed(() => {
@@ -62,6 +62,10 @@ const hasGoalId1Long = computed(() => {
 const hasGoalId1 = computed(() => {
   return recipes.value.some((item) => item.goal_id === 1)
 })
+
+const addRecipe = () => {
+  recipes.value.push({ recipe_name: 'Pesto spaghetti' })
+}
 
 
 onMounted(async () => {
@@ -91,8 +95,10 @@ onMounted(async () => {
         </ul>
       </nav>
     </template>
-    {{ recipes }}
-    {{ recipesNames }}
+    recipes names : {{ recipesNames }} <br><br>
+    spaghettiRecipes : {{ spaghettiRecipes }} <br><br>
+    hasGoalId1 : {{ hasGoalId1 }} <br><br>
+    <button @click="addRecipe">Ajouter une recette</button>
     <MyBackgroundScroll />
 
     <template #footer>
