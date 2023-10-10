@@ -3,20 +3,35 @@ import MyButton from '@/components/elements/MyButton.vue'
 import DefaultLayout from '@/components/layouts/DefaultLayout.vue'
 import MyBackgroundScroll from '@/components/MyBackgroundScroll.vue'
 import { onMounted }  from "vue"
+import axios from 'axios'
+
+
 
 // Modifier les deux fonctions pour executer 2 requêtes dans chacune, l'une après l'autre.
 // Récupérer toutes les recettes
 // Récupérer toutes les recettes de la cuisine 1 -> /recipes/cuisine/:cuisineId
 
 const getRecipesThen = () => {
-  fetch('http://localhost:3000/recipes')
+  // 1er appel
+  fetch(import.meta.env.VITE_API_URL + '/recipes')
     .then(response => response.json())
-    .then(data => console.log('fetch + then', data))
+    .then((recipes) => {
+      // Puis le 2ème lorsque le 1er est terminé
+      fetch(import.meta.env.VITE_API_URL + '/recipes/cuisine/1')
+        .then(response => response.json())
+        .then(cuisineRecipies => console.log({ recipes, cuisineRecipies }))
+    })
 }
 
+// Client axios global
+const client = axios.create({
+  baseURL: import.meta.env.VITE_API_URL
+})
+
 const getRecipes = async () => {
-  const response = await fetch('http://localhost:3000/recipes')
-  return response.json()
+  const response = await client.get('/recipes')
+  const cuisineRecipes = await client.get('/recipes/cuisine/1')
+  return { recipes: response, cuisineRecipes: cuisineRecipes }
 }
 
 onMounted(async () => {
