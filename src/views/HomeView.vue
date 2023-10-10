@@ -67,6 +67,35 @@ const addRecipe = () => {
   recipes.value.push({ recipe_name: 'Pesto spaghetti' })
 }
 
+const recipesInHero = 4
+// Utiliser 2 computed pour gérer les listes de recette
+// Une computed pour afficher les 4 premières du tableau recipes avec recipes.value.slice
+// Une computed pour afficher toutes les autres avec recipes.value.slice
+
+const heroRecipes = computed(() => {
+  // indexes de 0 à 3 (4 exclus)
+  return recipes.value.slice(0, recipesInHero)
+})
+
+const gridPage = ref(1)
+
+const gridRecipes = computed(() => {
+  const recipesByPage = 4
+  // pour gridPage === 1 => slice(4, 7)
+  // pour gridPage === 2 => slice(4, 10)
+  // pour gridPage === 3 => slice(4, 13)
+  return recipes.value.slice(recipesInHero, recipesInHero + gridPage.value * recipesByPage)
+})
+
+// Retourner s'il reste des recettes à afficher ou non
+const moreRecipesToShow = computed(() => {
+  return gridRecipes.value.length < (recipes.value.length - recipesInHero)
+})
+
+const seeMoreRecipe = () => {
+  gridPage.value++
+}
+
 onMounted(async () => {
   recipes.value = await getRecipes()
 })
@@ -94,6 +123,15 @@ onMounted(async () => {
         </ul>
       </nav>
     </template>
+    <p>Recettes de la grille</p>
+    <div class="recipes-list">
+      <div v-for="(recipe, index) in gridRecipes" :key="index">
+        <RecipeCard :title="recipe.recipe_name" :description="recipe.recipe_description" :image="recipe.image_url" />
+      </div>
+    </div>
+    <button v-if="moreRecipesToShow" @click="seeMoreRecipe">Voir plus de recettes</button>
+
+    <p>Toutes les recettes</p>
     <div class="recipes-list">
       <div v-for="(recipe, index) in recipes" :key="index">
         <RecipeCard :title="recipe.recipe_name" :description="recipe.recipe_description" :image="recipe.image_url" />
@@ -121,5 +159,6 @@ onMounted(async () => {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
+  margin-bottom: 100px;
 }
 </style>
