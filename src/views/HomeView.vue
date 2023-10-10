@@ -2,9 +2,8 @@
 import MyButton from '@/components/elements/MyButton.vue'
 import DefaultLayout from '@/components/layouts/DefaultLayout.vue'
 import MyBackgroundScroll from '@/components/MyBackgroundScroll.vue'
-import { onMounted }  from "vue"
+import {computed, onMounted, ref} from "vue"
 import axios from 'axios'
-
 
 
 // Modifier les deux fonctions pour executer 2 requêtes dans chacune, l'une après l'autre.
@@ -28,15 +27,33 @@ const client = axios.create({
   baseURL: import.meta.env.VITE_API_URL
 })
 
+const recipes = ref([])
+
 const getRecipes = async () => {
   const response = await client.get('/recipes')
-  const cuisineRecipes = await client.get('/recipes/cuisine/1')
-  return { recipes: response, cuisineRecipes: cuisineRecipes }
+  return response.data
 }
 
+
+// Retourner une liste des noms des recettes en utilisant recipes.map
+// Retourner un tableau des recettes dont le titre contient « Spaghetti » en utilisant recipes.filter
+// Retourner un boolean qui dit si une de vos recettes est du goal_id 1 en utilisant recipes.some
+
+const recipesNames = computed(() => {
+  //
+})
+
+const spaghettiRecipes = computed(() => {
+  //
+})
+
+const hasGoalId1 = computed(() => {
+//
+})
+
+
 onMounted(async () => {
-  console.log('fetch + await', await getRecipes())
-  getRecipesThen()
+  recipes.value = await getRecipes()
 })
 </script>
 
@@ -62,7 +79,7 @@ onMounted(async () => {
         </ul>
       </nav>
     </template>
-
+    {{ recipes }}
     <MyBackgroundScroll />
 
     <template #footer>
