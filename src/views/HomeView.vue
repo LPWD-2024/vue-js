@@ -3,8 +3,8 @@ import MyButton from '@/components/elements/MyButton.vue'
 import DefaultLayout from '@/components/layouts/DefaultLayout.vue'
 import MyBackgroundScroll from '@/components/MyBackgroundScroll.vue'
 import {computed, onMounted, ref} from "vue"
-import axios from 'axios'
 import RecipeCard from "@/components/RecipeCard/RecipeCard.vue";
+import { client } from "@/utils/axios";
 
 // Modifier les deux fonctions pour executer 2 requêtes dans chacune, l'une après l'autre.
 // Récupérer toutes les recettes
@@ -21,11 +21,6 @@ const getRecipesThen = () => {
         .then(cuisineRecipies => console.log({ recipes, cuisineRecipies }))
     })
 }
-
-// Client axios global
-const client = axios.create({
-  baseURL: import.meta.env.VITE_API_URL
-})
 
 const recipes = ref([])
 
@@ -126,7 +121,7 @@ onMounted(async () => {
     <p>Recettes de la grille</p>
     <div class="recipes-list">
       <div v-for="(recipe, index) in gridRecipes" :key="index">
-        <RecipeCard :title="recipe.recipe_name" :description="recipe.recipe_description" :image="recipe.image_url" />
+        <RecipeCard :id="recipe.recipe_id" :title="recipe.recipe_name" :description="recipe.recipe_description" :image="recipe.image_url" />
       </div>
     </div>
     <button v-if="moreRecipesToShow" @click="seeMoreRecipe">Voir plus de recettes</button>
@@ -134,7 +129,7 @@ onMounted(async () => {
     <p>Toutes les recettes</p>
     <div class="recipes-list">
       <div v-for="(recipe, index) in recipes" :key="index">
-        <RecipeCard :title="recipe.recipe_name" :description="recipe.recipe_description" :image="recipe.image_url" />
+        <RecipeCard :id="recipe.recipe_id" :title="recipe.recipe_name" :description="recipe.recipe_description" :image="recipe.image_url" />
       </div>
     </div>
     recipes names : {{ recipesNames }} <br><br>
