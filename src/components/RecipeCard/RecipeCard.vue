@@ -1,5 +1,6 @@
 <script setup>
 defineProps({
+  id: Number,
   title: String,
   description: String,
   image: String
@@ -12,6 +13,7 @@ defineProps({
       <img class="c-recipe-card__image" :src="image" alt="">
       <p class="c-recipe-card__title">{{ title }}</p>
       <p class="c-recipe-card__description">{{ description }}</p>
+      <RouterLink :to="`/recipes/${id}`">Plus d'infos</RouterLink>
     </div>
   </div>
 </template>
